@@ -1,0 +1,746 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jared — Engineering Portfolio</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #eef1f3;
+    --bg-grid: rgba(27,36,48,0.07);
+    --card: #fbfcfc;
+    --ink: #1b2430;
+    --ink-soft: #55606e;
+    --ink-faint: #8a94a1;
+    --accent: #1f6f4a;
+    --accent-soft: #dcece2;
+    --border: #d3d9de;
+    --shadow: rgba(27,36,48,0.14);
+  }
+  :root:not([data-theme="light"]) {
+    @media (prefers-color-scheme: dark) {
+      --bg: #14181d;
+      --bg-grid: rgba(255,255,255,0.05);
+      --card: #1b2128;
+      --ink: #eef1f3;
+      --ink-soft: #a7b0bb;
+      --ink-faint: #6a7480;
+      --accent: #4fbf87;
+      --accent-soft: #1d2f27;
+      --border: #313a44;
+      --shadow: rgba(0,0,0,0.45);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #14181d;
+    --bg-grid: rgba(255,255,255,0.05);
+    --card: #1b2128;
+    --ink: #eef1f3;
+    --ink-soft: #a7b0bb;
+    --ink-faint: #6a7480;
+    --accent: #4fbf87;
+    --accent-soft: #1d2f27;
+    --border: #313a44;
+    --shadow: rgba(0,0,0,0.45);
+  }
+
+  * { box-sizing: border-box; }
+  html { scroll-behavior: smooth; }
+  body {
+    margin: 0;
+    background:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/100% 42px,
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0/42px 100%,
+      var(--bg);
+    color: var(--ink);
+    font-family: "IBM Plex Sans", system-ui, sans-serif;
+    line-height: 1.5;
+  }
+  .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
+
+  /* ---------- Hero ---------- */
+  .hero {
+    min-height: 92vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 6vh 6vw 8vh;
+    max-width: 900px;
+  }
+  .hero .kicker {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+    color: var(--accent);
+    margin: 0 0 1.25rem;
+  }
+  .hero h1 {
+    font-size: clamp(2.2rem, 5.5vw, 3.6rem);
+    font-weight: 600;
+    line-height: 1.12;
+    margin: 0 0 1.5rem;
+    max-width: 14ch;
+  }
+  .hero p {
+    font-size: 1.08rem;
+    color: var(--ink-soft);
+    max-width: 58ch;
+    margin: 0 0 0.6rem;
+  }
+  .hero .focus-line {
+    margin-top: 2rem;
+    display: flex;
+    gap: 0.6rem;
+    flex-wrap: wrap;
+  }
+  .pill {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.78rem;
+    padding: 0.35rem 0.7rem;
+    border: 1px solid var(--border);
+    border-radius: 3px;
+    color: var(--ink-soft);
+    background: var(--card);
+  }
+  .scroll-hint {
+    margin-top: 3.5rem;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: var(--ink-faint);
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+  }
+  .scroll-hint svg { width: 14px; height: 14px; animation: bob 1.8s ease-in-out infinite; }
+  @keyframes bob { 0%,100% { transform: translateY(0);} 50% { transform: translateY(4px);} }
+
+  /* ---------- Section labels ---------- */
+  .section-label {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 8vh 6vw 2rem;
+  }
+  .section-label .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--accent); margin: 0 0 0.5rem; }
+  .section-label h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin: 0 0 0.6rem; max-width: 30ch; }
+  .section-label p { color: var(--ink-soft); max-width: 60ch; margin: 0; }
+
+  /* ---------- Stack ---------- */
+  .stack {
+    position: relative;
+    padding: 0 6vw 12vh;
+    max-width: 1180px;
+    margin: 0 auto;
+  }
+  .stack-wrapper {
+    min-height: 96vh;
+    display: flex;
+    align-items: flex-start;
+    padding-bottom: 6vh;
+  }
+  .stack-card {
+    position: sticky;
+    top: calc(4vh + (var(--i) - 1) * 2.4rem);
+    width: 100%;
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 var(--shadow);
+    z-index: var(--i);
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 0;
+    overflow: hidden;
+  }
+  .card-copy { padding: 3rem 2.75rem; }
+  .card-index {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.8rem;
+    color: var(--accent);
+    margin: 0 0 0.9rem;
+  }
+  .card-copy h2 {
+    font-size: clamp(1.3rem, 2.4vw, 1.65rem);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 0.9rem;
+  }
+  .card-copy .summary {
+    color: var(--ink-soft);
+    font-size: 0.96rem;
+    margin: 0 0 1.4rem;
+    max-width: 46ch;
+  }
+  .spec-list {
+    list-style: none;
+    margin: 0 0 1.4rem;
+    padding: 0;
+    display: grid;
+    gap: 0.5rem;
+  }
+  .spec-list li {
+    font-size: 0.86rem;
+    color: var(--ink);
+    padding-left: 1rem;
+    position: relative;
+    line-height: 1.45;
+  }
+  .spec-list li::before {
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0.5em;
+    width: 5px;
+    height: 5px;
+    background: var(--accent);
+    border-radius: 1px;
+  }
+  .spec-list b { font-weight: 600; }
+  .tag-row { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+  .tag {
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.72rem;
+    padding: 0.28rem 0.55rem;
+    background: var(--accent-soft);
+    color: var(--accent);
+    border-radius: 3px;
+  }
+  .card-visual {
+    background:
+      linear-gradient(var(--bg-grid) 1px, transparent 1px) 0 0/28px 28px,
+      linear-gradient(90deg, var(--bg-grid) 1px, transparent 1px) 0 0/28px 28px,
+      var(--bg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    border-left: 1px solid var(--border);
+  }
+  .card-visual svg { width: 100%; height: auto; max-width: 480px; }
+  .diagram-label { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; fill: var(--ink-soft); }
+  .diagram-title { font-family: "IBM Plex Mono", monospace; font-size: 10.5px; fill: var(--ink); font-weight: 600; }
+  .diagram-line { stroke: var(--ink-soft); stroke-width: 1.4; fill: none; }
+  .diagram-feedback { stroke: var(--accent); stroke-width: 1.6; fill: none; stroke-dasharray: 4 3; }
+  .diagram-box { fill: var(--card); stroke: var(--ink-soft); stroke-width: 1.2; }
+  .diagram-box-accent { fill: var(--accent-soft); stroke: var(--accent); stroke-width: 1.3; }
+
+  /* ---------- Research & writing (static list, not stacked) ---------- */
+  .writing-wrap {
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: 0 6vw 10vh;
+  }
+  .writing-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 var(--shadow);
+    padding: 0.5rem 2.5rem;
+  }
+  .writing-row {
+    display: grid;
+    grid-template-columns: 1.4fr 2.4fr auto;
+    gap: 1.5rem;
+    align-items: start;
+    padding: 1.6rem 0;
+    border-top: 1px solid var(--border);
+  }
+  .writing-row:first-child { border-top: none; }
+  .writing-row h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.3rem; }
+  .writing-row .meta { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--ink-faint); }
+  .writing-row p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
+  .writing-row .tag { white-space: nowrap; }
+
+  /* ---------- Closing card ---------- */
+  .close-wrap { max-width: 1180px; margin: 0 auto; padding: 0 6vw 14vh; }
+  .close-card {
+    background: var(--card);
+    border: 1px solid var(--border);
+    border-radius: 6px;
+    box-shadow: 5px 5px 0 var(--shadow);
+    padding: 3.5rem 2.75rem;
+  }
+  .close-card h2 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.9rem; }
+  .close-card .summary { max-width: 62ch; color: var(--ink-soft); font-size: 0.98rem; }
+  .contact-row {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+    margin-top: 1.75rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-size: 0.85rem;
+  }
+  .contact-row a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .contact-row a:hover { border-bottom-color: var(--accent); }
+
+  @media (max-width: 820px) {
+    .stack-card { grid-template-columns: 1fr; }
+    .card-visual { border-left: none; border-top: 1px solid var(--border); order: -1; padding: 1.75rem 1.25rem; }
+    .card-copy { padding: 2.25rem 1.5rem; }
+    .stack-card { top: calc(2.5vh + (var(--i) - 1) * 1.6rem); }
+    .hero { padding: 8vh 6vw; }
+    .writing-row { grid-template-columns: 1fr; gap: 0.4rem; }
+    .writing-card { padding: 0.5rem 1.5rem; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    .scroll-hint svg { animation: none; }
+  }
+</style>
+</head>
+<body>
+
+<section class="hero">
+  <p class="kicker mono">JARED — HARDWARE / BIOMEDICAL ENGINEERING</p>
+  <h1>Instrumentation and control systems, built from the sensor up.</h1>
+  <p>Entry-level biomedical engineer focused on physiological monitoring and device development, with a path toward neuroprosthetics. The builds below are systems I designed, wired, and wrote the control software for — coursework, research, and writing follow further down.</p>
+  <div class="focus-line">
+    <span class="pill">Closed-loop control</span>
+    <span class="pill">Embedded firmware</span>
+    <span class="pill">Sensor integration</span>
+    <span class="pill">Precision instrumentation</span>
+  </div>
+  <div class="scroll-hint">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
+    Scroll to review six builds below
+  </div>
+</section>
+
+<div class="stack">
+
+  <!-- 1: DarkSide-20K thesis -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:1;">
+      <div class="card-copy">
+        <p class="card-index mono">1 of 6</p>
+        <h2>Precision instrumentation for the DarkSide-20K dark matter detector</h2>
+        <p class="summary">Honors thesis in physics (Williams College). Designed and deployed two sensing subsystems on a full-scale mockup of a dark matter detector's cryogenic core, benchmarking them ahead of use in the real experiment.</p>
+        <ul class="spec-list">
+          <li><b>Short level meter:</b> 4 capacitive sensors around the TPC circumference, sub-millimeter precision, sensitive to as little as 0.01° of tilt in the liquid-argon interface</li>
+          <li><b>Temperature monitoring:</b> 44 RTD sensors across the PMMA barrel panels, tracking thermal gradients to prevent thermal-shock cracking during cryostat cooling</li>
+          <li><b>Readout chain:</b> custom 3-wire resistance measurement into ADCs, with a live Grafana dashboard for both sensor networks</li>
+          <li><b>Validation:</b> built a custom stainless-steel test fixture with liquid nitrogen as a LAr surrogate to correlate capacitance against known depth</li>
+          <li>Sensor readout stayed within 1°C agreement across the array during live cryostat cooling and filling</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Capacitive sensing</span>
+          <span class="tag">RTD/ADC design</span>
+          <span class="tag">Cryogenic instrumentation</span>
+          <span class="tag">Data modeling</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">TWO MOCKUP SUBSYSTEMS</text>
+
+          <rect x="10" y="42" width="140" height="46" rx="3" class="diagram-box"/>
+          <text x="80" y="61" text-anchor="middle" class="diagram-label">4x capacitive</text>
+          <text x="80" y="74" text-anchor="middle" class="diagram-label">level sensors</text>
+
+          <path d="M80 88 V104" class="diagram-line"/>
+          <rect x="10" y="104" width="140" height="46" rx="3" class="diagram-box"/>
+          <text x="80" y="123" text-anchor="middle" class="diagram-label">Capacitance to depth</text>
+          <text x="80" y="136" text-anchor="middle" class="diagram-label">curve-fit model</text>
+
+          <path d="M80 150 V166" class="diagram-line"/>
+          <rect x="10" y="166" width="140" height="46" rx="3" class="diagram-box-accent"/>
+          <text x="80" y="185" text-anchor="middle" class="diagram-label">Liquid-Ar interface</text>
+          <text x="80" y="198" text-anchor="middle" class="diagram-label">detects 0.01&#176; tilt</text>
+
+          <rect x="330" y="42" width="140" height="46" rx="3" class="diagram-box"/>
+          <text x="400" y="61" text-anchor="middle" class="diagram-label">44x RTD</text>
+          <text x="400" y="74" text-anchor="middle" class="diagram-label">temperature sensors</text>
+
+          <path d="M400 88 V104" class="diagram-line"/>
+          <rect x="330" y="104" width="140" height="46" rx="3" class="diagram-box"/>
+          <text x="400" y="123" text-anchor="middle" class="diagram-label">3-wire resistance</text>
+          <text x="400" y="136" text-anchor="middle" class="diagram-label">readout + ADC</text>
+
+          <path d="M400 150 V166" class="diagram-line"/>
+          <rect x="330" y="166" width="140" height="46" rx="3" class="diagram-box-accent"/>
+          <text x="400" y="185" text-anchor="middle" class="diagram-label">PMMA barrel</text>
+          <text x="400" y="198" text-anchor="middle" class="diagram-label">thermal gradient</text>
+
+          <path d="M80 212 V230 H240 V254" class="diagram-line"/>
+          <path d="M400 212 V230 H240 V254" class="diagram-line"/>
+          <rect x="170" y="254" width="140" height="46" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="273" text-anchor="middle" class="diagram-label">Live Grafana</text>
+          <text x="240" y="286" text-anchor="middle" class="diagram-label">dashboard</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <!-- 2: Hypoxic rig -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:2;">
+      <div class="card-copy">
+        <p class="card-index mono">2 of 6</p>
+        <h2>Closed-loop hypoxic air delivery system</h2>
+        <p class="summary">A PID-controlled altitude training rig that regulates blood oxygen saturation in real time by switching between hypoxic and normoxic air streams — built for a research/training use case, not a commercial kit.</p>
+        <ul class="spec-list">
+          <li><b>Gas source:</b> Hypoxico HYP-123 PSA generator plus a room-air blower for the normoxic stream</li>
+          <li><b>Feedback:</b> Masimo Root pulse oximeter over USB serial at 921,600 baud, streaming SpO2 / BPM / PI / RR at 1 Hz</li>
+          <li><b>Actuation:</b> 4x 2-way solenoid valves (2 NC / 2 NO) driven by a SainSmart FT245R relay board in async bitbang mode via <span class="mono">ftd2xx</span></li>
+          <li><b>Fail-safe:</b> de-energized state passively routes normoxic air by design — the rig can't fail into a hypoxic state</li>
+          <li><b>Software:</b> Python/Dash dashboard with live vitals plotting, a 15-episode treatment protocol, per-valve manual override, and CSV logging</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">PID control</span>
+          <span class="tag">Solenoid/relay driving</span>
+          <span class="tag">Serial protocol integration</span>
+          <span class="tag">Safety-first design</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">GAS PATH + FEEDBACK LOOP</text>
+
+          <rect x="10" y="50" width="120" height="46" rx="3" class="diagram-box"/>
+          <text x="70" y="70" text-anchor="middle" class="diagram-label">HYP-123 PSA</text>
+          <text x="70" y="83" text-anchor="middle" class="diagram-label">generator</text>
+
+          <rect x="10" y="120" width="120" height="46" rx="3" class="diagram-box"/>
+          <text x="70" y="140" text-anchor="middle" class="diagram-label">Room air</text>
+          <text x="70" y="153" text-anchor="middle" class="diagram-label">blower</text>
+
+          <path d="M130 73 H175 V90" class="diagram-line"/>
+          <path d="M130 143 H175 V126" class="diagram-line"/>
+
+          <rect x="175" y="82" width="130" height="52" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="102" text-anchor="middle" class="diagram-label">Valve bank</text>
+          <text x="240" y="115" text-anchor="middle" class="diagram-label">4x 2-way solenoid</text>
+
+          <path d="M305 108 H345" class="diagram-line"/>
+          <rect x="345" y="82" width="120" height="52" rx="3" class="diagram-box"/>
+          <text x="405" y="102" text-anchor="middle" class="diagram-label">Reservoir</text>
+          <text x="405" y="115" text-anchor="middle" class="diagram-label">bag</text>
+
+          <path d="M405 134 V180" class="diagram-line"/>
+          <rect x="345" y="180" width="120" height="46" rx="3" class="diagram-box"/>
+          <text x="405" y="200" text-anchor="middle" class="diagram-label">Mask /</text>
+          <text x="405" y="213" text-anchor="middle" class="diagram-label">subject</text>
+
+          <path d="M345 203 H240 V226" class="diagram-line"/>
+          <rect x="175" y="226" width="130" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="246" text-anchor="middle" class="diagram-label">Masimo Root</text>
+          <text x="240" y="259" text-anchor="middle" class="diagram-label">SpO2 monitor</text>
+
+          <path d="M175 252 H130" class="diagram-feedback"/>
+          <rect x="10" y="226" width="120" height="52" rx="3" class="diagram-box-accent"/>
+          <text x="70" y="246" text-anchor="middle" class="diagram-label">PID</text>
+          <text x="70" y="259" text-anchor="middle" class="diagram-label">controller (Py)</text>
+
+          <path d="M70 226 V108 H175" class="diagram-feedback"/>
+          <text x="90" y="170" class="diagram-label" fill="var(--accent)">closed loop</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <!-- 3: nRF52 platform -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:3;">
+      <div class="card-copy">
+        <p class="card-index mono">3 of 6</p>
+        <h2>nRF52 BLE research instrumentation platform</h2>
+        <p class="summary">A wireless bridge that unifies three pieces of research hardware — a NIRS monitor, a pneumatic cuff inflator, and an electrical stimulator — under one custom firmware stack and web dashboard, for running sequenced physiology protocols.</p>
+        <ul class="spec-list">
+          <li><b>Bridge hardware:</b> Nordic nRF52-DK running Zephyr RTOS (C89, NCS v2.0.0) as a BLE central</li>
+          <li><b>Sensing:</b> streams data from a Moxy near-infrared spectroscopy monitor over BLE</li>
+          <li><b>Cuff control:</b> E20 Rapid Cuff Inflator switched through a JZC-11F relay with a 2N3904 transistor driver stage</li>
+          <li><b>Stimulation:</b> DS7R constant-current stimulator triggered with a 5V TTL pulse at ~10 ms width, brought out to a BNC jack</li>
+          <li><b>Dashboard:</b> vanilla JS / Chart.js / Tailwind front end for live monitoring and running a fixed experimental sequence — baseline, preconditioning, stimulation, rest</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Zephyr / C firmware</span>
+          <span class="tag">BLE</span>
+          <span class="tag">Analog driver design</span>
+          <span class="tag">Protocol sequencing</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">BLE BRIDGE TOPOLOGY</text>
+
+          <rect x="170" y="140" width="140" height="56" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="162" text-anchor="middle" class="diagram-label">nRF52-DK</text>
+          <text x="240" y="175" text-anchor="middle" class="diagram-label">Zephyr RTOS</text>
+          <text x="240" y="188" text-anchor="middle" class="diagram-label">BLE bridge</text>
+
+          <path d="M240 140 V60" class="diagram-line"/>
+          <rect x="170" y="14" width="140" height="46" rx="3" class="diagram-box"/>
+          <text x="240" y="34" text-anchor="middle" class="diagram-label">Web dashboard</text>
+          <text x="240" y="47" text-anchor="middle" class="diagram-label">Chart.js / Tailwind</text>
+
+          <path d="M170 155 H60" class="diagram-line"/>
+          <rect x="10" y="130" width="120" height="50" rx="3" class="diagram-box"/>
+          <text x="70" y="150" text-anchor="middle" class="diagram-label">Moxy NIRS</text>
+          <text x="70" y="163" text-anchor="middle" class="diagram-label">monitor</text>
+
+          <path d="M240 196 V240 H130" class="diagram-line"/>
+          <rect x="10" y="216" width="120" height="50" rx="3" class="diagram-box"/>
+          <text x="70" y="236" text-anchor="middle" class="diagram-label">E20 cuff</text>
+          <text x="70" y="249" text-anchor="middle" class="diagram-label">inflator (relay)</text>
+
+          <path d="M310 155 H420" class="diagram-line"/>
+          <rect x="420" y="130" width="55" height="50" rx="3" class="diagram-box"/>
+          <text x="447" y="148" text-anchor="middle" class="diagram-label">DS7R</text>
+          <text x="447" y="160" text-anchor="middle" class="diagram-label">stim.</text>
+          <text x="447" y="172" text-anchor="middle" class="diagram-label">BNC</text>
+
+          <path d="M310 196 V240 H420" class="diagram-line"/>
+          <text x="330" y="255" class="diagram-label">TTL trigger, ~10 ms</text>
+
+          <path d="M240 196 V310" class="diagram-line"/>
+          <rect x="150" y="290" width="180" height="40" rx="3" class="diagram-box"/>
+          <text x="240" y="308" text-anchor="middle" class="diagram-label">Sequenced protocol:</text>
+          <text x="240" y="321" text-anchor="middle" class="diagram-label">baseline &#8594; precond. &#8594; stim &#8594; rest</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <!-- 4: Robotics coursework -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:4;">
+      <div class="card-copy">
+        <p class="card-index mono">4 of 6</p>
+        <h2>Robotics &amp; controls: four challenge problems</h2>
+        <p class="summary">A semester of team challenge problems for Intro to Robotics (CU Boulder), moving from discrete pathfinding to continuous control — each one a self-contained simulation with its own write-up and results.</p>
+        <ul class="spec-list">
+          <li><b>CP1 — Multi-robot pathfinding:</b> conflict-resolution algorithms routing robots across a shared grid without collisions; benchmarked two decision strategies over 100-run trials</li>
+          <li><b>CP2 — RRT motion planning:</b> a non-holonomic Rapidly-Exploring Random Tree planner for a TurtleBot in PyBullet, 90% goal-reach rate over 100 randomized trials</li>
+          <li><b>CP3 — Inverse kinematics:</b> drove a 7-DOF Franka Emika Panda arm to render images and lettering on a virtual blackboard via IK-based point-to-point motion</li>
+          <li><b>CP4 — Inverted-pendulum control:</b> derived the cart-pendulum equations of motion via Lagrangian mechanics, then designed and tuned a PD controller to stabilize and step the system</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">Control theory</span>
+          <span class="tag">Motion planning</span>
+          <span class="tag">Inverse kinematics</span>
+          <span class="tag">Python / PyBullet</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">FOUR CHALLENGE PROBLEMS</text>
+
+          <rect x="60" y="40" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="60" text-anchor="middle" class="diagram-label">CP1 &#183; Multi-robot grid pathfinding</text>
+          <text x="240" y="76" text-anchor="middle" class="diagram-label">conflict-aware routing on a shared grid</text>
+
+          <path d="M240 92 V108" class="diagram-line"/>
+          <rect x="60" y="108" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="128" text-anchor="middle" class="diagram-label">CP2 &#183; RRT motion planning</text>
+          <text x="240" y="144" text-anchor="middle" class="diagram-label">non-holonomic TurtleBot in PyBullet</text>
+
+          <path d="M240 160 V176" class="diagram-line"/>
+          <rect x="60" y="176" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="196" text-anchor="middle" class="diagram-label">CP3 &#183; Inverse kinematics</text>
+          <text x="240" y="212" text-anchor="middle" class="diagram-label">7-DOF arm draws on a blackboard</text>
+
+          <path d="M240 228 V244" class="diagram-line"/>
+          <rect x="60" y="244" width="360" height="52" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="264" text-anchor="middle" class="diagram-label">CP4 &#183; Inverted-pendulum control</text>
+          <text x="240" y="280" text-anchor="middle" class="diagram-label">Lagrangian dynamics + tuned PD</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <!-- 5: RE coffee grinder -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:5;">
+      <div class="card-copy">
+        <p class="card-index mono">5 of 6</p>
+        <h2>Reverse engineering: a manual coffee grinder</h2>
+        <p class="summary">A full teardown-to-redesign study of a consumer product for a mechanical design course — disassembly, functional analysis, material selection, and a concrete redesign proposal.</p>
+        <ul class="spec-list">
+          <li><b>Teardown:</b> full disassembly procedure and product-architecture breakdown of the grinder's mechanical assembly</li>
+          <li><b>Analysis:</b> black-box, glass-box, and fishbone diagrams; DFA scoring for part count and assembly complexity</li>
+          <li><b>Materials:</b> Ashby-chart comparisons (strength/density, wear/hardness, fracture toughness) across plastics, ceramics, and metals for each component</li>
+          <li><b>Redesign proposal:</b> consolidated the cup-holder assembly, snap-fit the plastic ring, and substituted Aluminum 6061 for a stainless part — with a revised cost and DFA analysis to back it up</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">DFA / DFM</span>
+          <span class="tag">Material selection</span>
+          <span class="tag">Mechanical design</span>
+          <span class="tag">Cost analysis</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">REVERSE-ENGINEERING FLOW</text>
+
+          <rect x="60" y="40" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="60" text-anchor="middle" class="diagram-label">Disassembly</text>
+          <text x="240" y="76" text-anchor="middle" class="diagram-label">+ product architecture</text>
+
+          <path d="M240 92 V108" class="diagram-line"/>
+          <rect x="60" y="108" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="128" text-anchor="middle" class="diagram-label">DFA / functional analysis</text>
+          <text x="240" y="144" text-anchor="middle" class="diagram-label">black box, glass box, fishbone</text>
+
+          <path d="M240 160 V176" class="diagram-line"/>
+          <rect x="60" y="176" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="196" text-anchor="middle" class="diagram-label">Material selection</text>
+          <text x="240" y="212" text-anchor="middle" class="diagram-label">Ashby charts, plastics vs. metals</text>
+
+          <path d="M240 228 V244" class="diagram-line"/>
+          <rect x="60" y="244" width="360" height="52" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="264" text-anchor="middle" class="diagram-label">Redesign proposal</text>
+          <text x="240" y="280" text-anchor="middle" class="diagram-label">part-count reduction, lower cost</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+  <!-- 6: Knee biomechanics -->
+  <div class="stack-wrapper">
+    <article class="stack-card" style="--i:6;">
+      <div class="card-copy">
+        <p class="card-index mono">6 of 6</p>
+        <h2>Knee rotation asymmetry in ACL injury risk</h2>
+        <p class="summary">A biomechanics reanalysis of public motion-capture data, testing whether dominant vs. non-dominant legs show different knee rotation patterns during a high-risk landing task linked to non-contact ACL injury.</p>
+        <ul class="spec-list">
+          <li><b>Data:</b> reanalyzed 3D mocap + force-plate data from a 44-participant jump-landing study (Vicon system, 59 markers, pre/post fatigue)</li>
+          <li><b>Pipeline:</b> joint angle time series recomputed via OpenSim inverse kinematics, isolating the single-leg medial rotation hop</li>
+          <li><b>Question:</b> compared internal/external knee rotation between dominant and non-dominant legs during the landing window</li>
+          <li><b>Framing:</b> grounded the analysis in the sports-medicine literature on leg-dominance asymmetry as an ACL injury risk factor</li>
+        </ul>
+        <div class="tag-row">
+          <span class="tag">OpenSim / IK</span>
+          <span class="tag">Motion capture analysis</span>
+          <span class="tag">Biomechanics</span>
+          <span class="tag">Statistical comparison</span>
+        </div>
+      </div>
+      <div class="card-visual">
+        <svg viewBox="0 0 480 340" xmlns="http://www.w3.org/2000/svg">
+          <text x="10" y="20" class="diagram-title">REANALYSIS PIPELINE</text>
+
+          <rect x="60" y="40" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="60" text-anchor="middle" class="diagram-label">Mocap dataset</text>
+          <text x="240" y="76" text-anchor="middle" class="diagram-label">Calisti et al. 2025, 44 subjects</text>
+
+          <path d="M240 92 V108" class="diagram-line"/>
+          <rect x="60" y="108" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="128" text-anchor="middle" class="diagram-label">OpenSim inverse kinematics</text>
+          <text x="240" y="144" text-anchor="middle" class="diagram-label">joint-angle time series</text>
+
+          <path d="M240 160 V176" class="diagram-line"/>
+          <rect x="60" y="176" width="360" height="52" rx="3" class="diagram-box"/>
+          <text x="240" y="196" text-anchor="middle" class="diagram-label">Dominant vs. non-dominant</text>
+          <text x="240" y="212" text-anchor="middle" class="diagram-label">medial-rotation hop trials</text>
+
+          <path d="M240 228 V244" class="diagram-line"/>
+          <rect x="60" y="244" width="360" height="52" rx="3" class="diagram-box-accent"/>
+          <text x="240" y="264" text-anchor="middle" class="diagram-label">Rotation asymmetry</text>
+          <text x="240" y="280" text-anchor="middle" class="diagram-label">statistical comparison</text>
+        </svg>
+      </div>
+    </article>
+  </div>
+
+</div>
+
+<div class="section-label">
+  <p class="eyebrow mono">RESEARCH &amp; WRITING</p>
+  <h2>Neuroscience coursework and proposal writing</h2>
+  <p>Not hardware builds, but the reading and reasoning behind the neuroprosthetics focus above — paper reviews, a mock grant proposal, and one wet-lab electrophysiology project.</p>
+</div>
+
+<div class="writing-wrap">
+  <div class="writing-card">
+
+    <div class="writing-row">
+      <div>
+        <h3>Mock R03 grant proposal</h3>
+        <p class="meta mono">NIH-style proposal &#183; gene therapy</p>
+      </div>
+      <p>Proposed a feasibility study applying rSIV.F/HN lentiviral gene therapy to human-derived cystic fibrosis airway cultures, targeting the ~15% of patients whose CFTR mutation doesn't respond to standard modulator therapy.</p>
+      <span class="tag">Grant writing</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>BCI finger &amp; quadcopter paper review</h3>
+        <p class="meta mono">Paper review &#183; Willsey et al. 2025</p>
+      </div>
+      <p>Reviewed a brain-computer interface that decoded individual finger movements from motor-cortex recordings in a paralyzed participant, well enough to pilot a quadcopter simulator with four degrees of freedom.</p>
+      <span class="tag">BCI</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>BCI paper review presentation</h3>
+        <p class="meta mono">Team presentation</p>
+      </div>
+      <p>Presented on motor-cortex brain-machine interfaces for reach and grasp decoding, covering electrode placement and signal processing across several foundational studies.</p>
+      <span class="tag">BCI</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>Mock neurotherapy proposal</h3>
+        <p class="meta mono">Proposal &#183; optogenetics</p>
+      </div>
+      <p>Designed a proposed optogenetic therapy targeting SOM+ interneurons in the amygdala to reduce excessive fear responses in anxiety disorders, while preserving appropriate responses to real threats.</p>
+      <span class="tag">Neuromodulation</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>The amygdala in fear processing</h3>
+        <p class="meta mono">Synthesis paper</p>
+      </div>
+      <p>Synthesized lesion-patient case studies and interoception experiments into a proposed model of how the amygdala integrates external and internal signals to regulate fear.</p>
+      <span class="tag">Neuroscience</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>Valence coding in emotion</h3>
+        <p class="meta mono">Analysis paper</p>
+      </div>
+      <p>Analyzed how amygdala microcircuits encode emotional valence, applying the model to predict altered emotional responses in an amygdala-lesion patient case study.</p>
+      <span class="tag">Neuroscience</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>Dorsal raphe nucleus in salient behaviors</h3>
+        <p class="meta mono">Presentation &#183; Paquelet et al. 2022</p>
+      </div>
+      <p>Presented on serotonergic dorsal raphe signaling during emotionally salient behavior and its broader role in reward, anxiety, and social interaction circuits.</p>
+      <span class="tag">Neuroscience</span>
+    </div>
+
+    <div class="writing-row">
+      <div>
+        <h3>Agropollutants, acetylcholinesterase &amp; the laryngeal synapse</h3>
+        <p class="meta mono">Wet-lab project &#183; electrophysiology</p>
+      </div>
+      <p>Ran electrophysiology trials on the Xenopus laevis laryngeal neuromuscular synapse to test how organophosphate pollutants — acetylcholinesterase inhibitors — affect firing and fatigue at the junction.</p>
+      <span class="tag">Electrophysiology</span>
+    </div>
+
+  </div>
+</div>
+
+<div class="close-wrap">
+  <article class="close-card">
+    <h2>Building toward neuroprosthetics, one instrumentation problem at a time</h2>
+    <p class="summary">The builds above came out of the same habit: take a physiological signal, close a control loop around it, and make the software trustworthy enough to run unattended. That's the kind of foundational device work I'm looking to do next — ideally somewhere it points toward neural interfaces and implantable devices over time.</p>
+    <div class="contact-row">
+      <a href="mailto:you@example.com">you@example.com — replace with your email</a>
+      <a href="#">linkedin.com/in/your-handle</a>
+      <a href="#">github.com/your-handle</a>
+    </div>
+  </article>
+</div>
+
+</body>
+</html>
