@@ -374,7 +374,7 @@
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:1;">
       <div class="card-copy">
-        <p class="card-index mono">1 of 7 — SpO2 Control System</p>
+        <p class="card-index mono">1 of 7 — Tan Lab, CU-Boulder</p>
         <h2>Closed-loop Hypoxic Air Delivery and Control System</h2>
 
         <div class="proj-section">
@@ -427,31 +427,23 @@
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:2;">
       <div class="card-copy">
-        <p class="card-index mono">2 of 7 — nRF52</p>
-        <h2>nRF52 BLE research instrumentation platform</h2>
+        <p class="card-index mono">2 of 7 — Tan Lab, CU-Boulder </p>
+        <h2>nRF52 BLE Research Instrumentation Platform</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Unify three separate pieces of physiology research hardware — a NIRS monitor, a pneumatic cuff inflator, and an electrical stimulator — under one BLE bridge and web dashboard, so a lab can run a single sequenced protocol instead of juggling three standalone instruments.</p>
+          <p class="proj-text">Unified three separate pieces of physiology research hardware: a NIRS monitor, a pneumatic cuff inflator, and an electrical stimulator, under one BLE bridge and web dashboard. Allowed the lab to run a single sequenced protocol with shared timestamps, instead of juggling three standalone instruments.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Bridge firmware:</b> Zephyr RTOS (C89, NCS v2.0.0) on a Nordic nRF52-DK, acting as BLE central</li>
-            <li><b>Sensing:</b> streamed data from a Moxy near-infrared spectroscopy monitor over BLE</li>
-            <li><b>Cuff driver:</b> designed a relay circuit (JZC-11F relay + 2N3904 transistor) to switch the E20 cuff inflator</li>
-            <li><b>Stimulation:</b> implemented the DS7R's 5V TTL trigger requirement (~10 ms pulse width), broken out to a BNC jack</li>
-            <li><b>Dashboard:</b> built the protocol runner and live monitor in vanilla JS / Chart.js / Tailwind</li>
-          </ul>
-        </div>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Results</p>
-          <ul class="spec-list">
-            <li>Diagnosed and resolved pin conflicts (P0.11/P0.14) between the firmware and the dev board's onboard buttons</li>
-            <li>Replaced an unreliable optocoupler-based cuff driver with the relay design after hardware debugging</li>
-            <li>Shipped a working sequenced protocol — baseline, preconditioning, stimulation, rest — run entirely from one dashboard</li>
+            <li><b>Circuit design:</b> Designed the relay driver circuit and stimulator trigger circuit to control cuff inflation and e-stim via a Nordic's GPIOs.</li>
+            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax-refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecure Documentation. 
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing them into a working enclosure with USB-Micro-C output to computer, BNC output to the e-stim, and 1/4" Audio Jack to the cuff inflator.</li>
+            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT-streaming from a Moxy NIRS monitor.</li>
+            <li><b>Protocol engineering:</b> Implemented the specified research protocol for cuff inflation and precise 5V TTL triggering (~10 ms) for the DS7R stimulator.</li>
+            <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS / Chart.js / Tailwind, with the entire protocol available to run with one button. Also added contingency manual controls for the cuff inflator and e-stim and a button to manually save data, although automatically backed up on the hard-drive.</li>
           </ul>
         </div>
 
