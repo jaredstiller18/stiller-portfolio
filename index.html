@@ -9,25 +9,12 @@
 <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 
 <!-- ==========================================================================
-     IMAGE NAMING CONVENTION (for GitHub Pages)
-     Create a folder called "images" next to this index.html, and name each
-     photo exactly as referenced below: <project-slug>-1.jpg / -2.jpg / -3.jpg
-     (use .png instead of .jpg if that's your file type — just update the
-     extension in the src reference to match).
-
-       images/spo2-system-1.jpg   images/spo2-system-2.jpg   images/spo2-system-3.jpg
-       images/nrf52-platform-1.jpg   images/nrf52-platform-2.jpg   images/nrf52-platform-3.jpg
-       images/walker-braking-1.jpg   images/walker-braking-2.jpg   images/walker-braking-3.jpg
-       images/oxygen-tubing-1.jpg   images/oxygen-tubing-2.jpg   images/oxygen-tubing-3.jpg
-       images/coffee-grinder-1.jpg   images/coffee-grinder-2.jpg   images/coffee-grinder-3.jpg
-       images/temp-sensors-1.jpg   images/temp-sensors-2.jpg   images/temp-sensors-3.jpg
-       images/level-meter-1.jpg   images/level-meter-2.jpg   images/level-meter-3.jpg
-       images/robotics-coursework-1.jpg   images/robotics-coursework-2.jpg   images/robotics-coursework-3.jpg
-       images/knee-biomechanics-1.jpg   images/knee-biomechanics-2.jpg   images/knee-biomechanics-3.jpg
-
-     Every photo slot below is already pointed at one of these paths. If a
-     photo doesn't exist yet, that slot just shows a plain placeholder box —
-     nothing breaks. Drop matching files into images/ whenever you're ready.
+     IMAGE FILES
+     Each project's photo strip below is already pointed at real file paths
+     under images/ — the extensions (.jpg / .png / .jpeg) match whatever you
+     uploaded per project. Keep those exact file names when you drop the
+     photos into the images/ folder in your repo. Each slide cycles in the
+     order it's listed (1, 2, 3 … n) using the arrows.
      ========================================================================== -->
 
 <style>
@@ -112,21 +99,16 @@
     max-width: 62ch;
     margin: 0 0 0.6rem;
   }
-  .hero .focus-line {
-    margin-top: 2rem;
+  .contact-row {
     display: flex;
-    gap: 0.6rem;
+    gap: 1.5rem;
     flex-wrap: wrap;
-  }
-  .pill {
     font-family: "IBM Plex Mono", monospace;
-    font-size: 0.78rem;
-    padding: 0.35rem 0.7rem;
-    border: 1px solid var(--border);
-    border-radius: 3px;
-    color: var(--ink-soft);
-    background: var(--card);
+    font-size: 0.85rem;
   }
+  .contact-row.top { margin: 0 0 2.25rem; }
+  .contact-row a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
+  .contact-row a:hover { border-bottom-color: var(--accent); }
   .scroll-hint {
     margin-top: 3.5rem;
     display: flex;
@@ -175,6 +157,7 @@
     grid-template-columns: 1.05fr 0.95fr;
     gap: 0;
     overflow: hidden;
+    align-items: stretch;
   }
   .card-copy { padding: 2.75rem 2.75rem; max-height: 92vh; overflow-y: auto; }
   .card-index {
@@ -242,7 +225,8 @@
   /* ---------- Photo carousel ---------- */
   .card-visual {
     position: relative;
-    min-height: 320px;
+    aspect-ratio: 4 / 3;
+    min-height: 380px;
     border-left: 1px solid var(--border);
   }
   .carousel { position: absolute; inset: 0; overflow: hidden; }
@@ -250,7 +234,8 @@
     position: absolute;
     inset: 0;
     background-color: var(--bg);
-    background-size: cover;
+    background-size: contain;
+    background-repeat: no-repeat;
     background-position: center;
     border: 1px dashed var(--border);
     opacity: 0;
@@ -286,67 +271,19 @@
     display: flex;
     gap: 6px;
     z-index: 3;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 80%;
   }
   .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); }
   .dot.active { background: var(--accent); }
 
-  /* ---------- Research & writing (static list, not stacked) ---------- */
-  .writing-wrap {
-    max-width: 1180px;
-    margin: 0 auto;
-    padding: 0 6vw 10vh;
-  }
-  .writing-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-shadow: 5px 5px 0 var(--shadow);
-    padding: 0.5rem 2.5rem;
-  }
-  .writing-row {
-    display: grid;
-    grid-template-columns: 1.4fr 2.4fr auto;
-    gap: 1.5rem;
-    align-items: start;
-    padding: 1.6rem 0;
-    border-top: 1px solid var(--border);
-  }
-  .writing-row:first-child { border-top: none; }
-  .writing-row h3 { font-size: 1rem; font-weight: 600; margin: 0 0 0.3rem; }
-  .writing-row .meta { font-family: "IBM Plex Mono", monospace; font-size: 0.75rem; color: var(--ink-faint); }
-  .writing-row p { margin: 0; font-size: 0.88rem; color: var(--ink-soft); }
-  .writing-row .tag { white-space: nowrap; }
-
-  /* ---------- Closing card ---------- */
-  .close-wrap { max-width: 1180px; margin: 0 auto; padding: 0 6vw 14vh; }
-  .close-card {
-    background: var(--card);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    box-shadow: 5px 5px 0 var(--shadow);
-    padding: 3.5rem 2.75rem;
-  }
-  .close-card h2 { font-size: 1.6rem; font-weight: 600; margin: 0 0 0.9rem; }
-  .close-card .summary { max-width: 62ch; color: var(--ink-soft); font-size: 0.98rem; }
-  .contact-row {
-    display: flex;
-    gap: 1.5rem;
-    flex-wrap: wrap;
-    margin-top: 1.75rem;
-    font-family: "IBM Plex Mono", monospace;
-    font-size: 0.85rem;
-  }
-  .contact-row a { color: var(--accent); text-decoration: none; border-bottom: 1px solid var(--accent-soft); }
-  .contact-row a:hover { border-bottom-color: var(--accent); }
-
   @media (max-width: 820px) {
     .stack-card { grid-template-columns: 1fr; }
-    .card-visual { border-left: none; border-top: 1px solid var(--border); order: -1; min-height: 240px; }
+    .card-visual { border-left: none; border-top: 1px solid var(--border); order: -1; aspect-ratio: 4 / 3; min-height: 280px; }
     .card-copy { padding: 2.25rem 1.5rem; max-height: none; }
     .stack-card { top: calc(2.5vh + (var(--i) - 1) * 1.6rem); }
     .hero { padding: 8vh 6vw; }
-    .writing-row { grid-template-columns: 1fr; gap: 0.4rem; }
-    .writing-card { padding: 0.5rem 1.5rem; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -359,9 +296,13 @@
 <body>
 
 <section class="hero">
+  <div class="contact-row top">
+    <a href="mailto:you@example.com">you@example.com — replace with your email</a>
+    <a href="#">linkedin.com/in/your-handle — replace with your LinkedIn</a>
+    <a href="#">github.com/your-handle — replace with your GitHub</a>
+  </div>
   <h1>Jared Stiller - Engineering Portfolio</h1>
   <p> Hello and welcome to my portfolio! I studied physics and biology as an undergraduate at Williams College. There I contributed subsystems to the DarkSide20K project and received Sigma-Xi honors in physics for my thesis work on the project. I am now graduating from CU-Boudler in Fall 2026 with my Master's in Biomedical Engineering. At Boulder I work in the physiology department's Tan Lab where I engineer the systems to conduct experimental procedures. I love the process of design and improvement, and hope to use my skills to create a meaningful impact on others. The projects below are some fun examples of my work in research labs and class. </p>
-  <div class="focus-line">
   <div class="scroll-hint">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
     Scroll to review seven builds below
@@ -370,7 +311,7 @@
 
 <div class="stack">
 
-  <!-- 1: SpO2 system -->
+  <!-- 1: SpO2 system — 3 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:1;">
       <div class="card-copy">
@@ -417,17 +358,19 @@
           <div class="carousel-slide" style="background-image:url('images/spo2-system-3.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 2: nRF52 -->
+  <!-- 2: nRF52 — 6 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:2;">
       <div class="card-copy">
-        <p class="card-index mono">2 of 7 — Tan Lab, CU-Boulder </p>
+        <p class="card-index mono">2 of 7 — Tan Lab, CU-Boulder</p>
         <h2>nRF52 BLE Research Instrumentation Platform</h2>
 
         <div class="proj-section">
@@ -438,12 +381,12 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Circuit design:</b> Designed the relay driver circuit and stimulator trigger circuit to control cuff inflation and e-stim via a Nordic's GPIOs.</li>
-            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax-refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecure Documentation. 
-            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing them into a working enclosure with USB-Micro-C output to computer, BNC output to the e-stim, and 1/4" Audio Jack to the cuff inflator.</li>
-            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT-streaming from a Moxy NIRS monitor.</li>
+            <li><b>Circuit design:</b> Designed the relay driver circuit and stimulator trigger circuit to control cuff inflation and e-stim via the Nordic's GPIOs.</li>
+            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecture Documentation.</li>
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing them into a working enclosure with USB Micro-C output to computer, BNC output to the e-stim, and a 1/4" audio jack to the cuff inflator.</li>
+            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT streaming from a Moxy NIRS monitor.</li>
             <li><b>Protocol engineering:</b> Implemented the specified research protocol for cuff inflation and precise 5V TTL triggering (~10 ms) for the DS7R stimulator.</li>
-            <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS / Chart.js / Tailwind, with the entire protocol available to run with one button. Also added contingency manual controls for the cuff inflator and e-stim and a button to manually save data, although automatically backed up on the hard-drive.</li>
+            <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS / Chart.js / Tailwind, with the entire protocol runnable from one button. Added contingency manual controls for the cuff inflator and e-stim, plus a manual save button on top of automatic hard-drive backups.</li>
           </ul>
         </div>
 
@@ -459,38 +402,40 @@
           <div class="carousel-slide active" style="background-image:url('images/nrf52-platform-1.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/nrf52-platform-2.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/nrf52-platform-3.png');"></div>
-          <div class="carousel-slide active" style="background-image:url('images/nrf52-platform-4.png');"></div>
+          <div class="carousel-slide" style="background-image:url('images/nrf52-platform-4.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/nrf52-platform-5.jpeg');"></div>
           <div class="carousel-slide" style="background-image:url('images/nrf52-platform-6.jpeg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 3: Automated walker braking (placeholder — needs details from Jared) -->
+  <!-- 3: Automated walker braking — 7 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:3;">
       <div class="card-copy">
         <p class="card-index mono">3 of 7 — MCEN 5055: Advanced Product Design</p>
-        <h2>Automated Parking Break for a Wheeled-Walker</h2>
+        <h2>Automated Parking Brake for a Wheeled Walker</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text todo"><em>To reduce the cognitive and physical load on walker user's by implementing an automated sensing and braking system.</em></p>
+          <p class="proj-text">To reduce the cognitive and physical load on walker users by implementing an automated sensing and braking system.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
-          <ul class="spec-list todo">
-            <li><b>Field Research:</b> Conducted in-person and virtual interviews with walker user's, nurses, and physicians, at local retirement homes to determine potential needs. Returned for interviews throughout the prototyping stage for continuous user feedback as the concept was developed.</li>
-            <li><b>Ideation:</b> Engaged in a comprehensive brainstorming approach using concept maps, customer journey maps, and affinity diagrams. 
-            <li><b>Administrative and Website Design:</b> Submitted a BOM to be ordered. Documented the design process (Need-finding, Ideation, Prototyping, Reflection, and Marketing) on a website platform.</li>
-            <li><b>Circuit and Hardware Design:</b> Designed a capacitive brake-trigger circuit. Used copper tape formed to the walker handles as capacitive sensors. The capacitive touch signal was processed through an Arduino-Nano, generating a motor response in the braking system. Electronics, drivers, and actuators operated via a portable power source connected to the walker.</li>
-            <li><b>Hardware Construction:</b> Handbuilt and soldered the circuit above. Implemented linear actuators into the walker's braking system and a capacitive sensing system in the handles. Everything was fixed to the walker while retaining it's foldability and portability.</li>
-            <li><b>Software Design:</b> Wrote and refined code in C/C++ for a touch-threshold brake response designed to trigger the parking brake when the user is not in stable contact with the walker using an array of handle sensors in conjunction with iterative field tests under observation.
+          <ul class="spec-list">
+            <li><b>Field research:</b> Conducted in-person and virtual interviews with walker users, nurses, and physicians at local retirement homes to determine potential needs. Returned throughout the prototyping stage for continuous user feedback as the concept developed.</li>
+            <li><b>Ideation:</b> Engaged in a comprehensive brainstorming approach using concept maps, customer journey maps, and affinity diagrams.</li>
+            <li><b>Administrative and website design:</b> Submitted a BOM to be ordered. Documented the design process (need-finding, ideation, prototyping, reflection, and marketing) on a website platform.</li>
+            <li><b>Circuit and hardware design:</b> Designed a capacitive brake-trigger circuit using copper tape formed to the walker handles as capacitive sensors. The touch signal was processed through an Arduino Nano, generating a motor response in the braking system. Electronics, drivers, and actuators ran off a portable power source connected to the walker.</li>
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuit above. Implemented linear actuators into the walker's braking system and a capacitive sensing system in the handles — all fixed to the walker while retaining its foldability and portability.</li>
+            <li><b>Software design:</b> Wrote and refined code in C/C++ for a touch-threshold brake response, triggering the parking brake when the user loses stable contact with the walker, using an array of handle sensors alongside iterative field tests under observation.</li>
           </ul>
         </div>
 
@@ -509,37 +454,37 @@
           <div class="carousel-slide" style="background-image:url('images/walker-braking-7.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 4: Oxygen tubing storage device (placeholder — needs details from Jared) -->
+  <!-- 4: Oxygen tubing storage device — 6 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:4;">
       <div class="card-copy">
         <p class="card-index mono">4 of 7 — MCEN 5045: Design for Manufacturability</p>
-        <h2>Oxygen tubing storage device</h2>
+        <h2>Oxygen Tubing Storage Device</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text todo"><em>[Add a 1–2 sentence objective: what problem with oxygen tubing storage/management this solves.]</em></p>
+          <p class="proj-text">To design a novel mechatronic system that provides safe, omnidirectional management of oxygen tubing.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
-          <ul class="spec-list todo">
-            <li>[Mechanism — how the tubing is stored/retracted/organized]</li>
-            <li>[Materials/construction]</li>
-            <li>[Any electronics, or is it purely mechanical?]</li>
-          </ul>
-        </div>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Results</p>
-          <ul class="spec-list todo">
-            <li>[Context/outcome — who it's for, where it'd be used, any testing done]</li>
+          <ul class="spec-list">
+            <li><b>Functional analysis:</b> Researched existing market solutions and used black box, glass box, and fishbone diagrams to establish functional and performance requirements.</li>
+            <li><b>Design analysis:</b> Completed a DFA analysis that informed redesigns aiming to reduce factory build time and cost.</li>
+            <li><b>Material analysis:</b> Determined materials using Ashby material analysis charts based on functional requirements, aiming to reduce manufacturing cost and environmental impact.</li>
+            <li><b>Manufacturing analysis:</b> Determined manufacturing methods alongside the material analysis, aiming to reduce cost for our intended production line.</li>
+            <li><b>Cost analysis:</b> Determined the cost of manufacturing the product based on material and manufacturing method.</li>
+            <li><b>Bill of materials:</b> Produced a BOM for custom parts, including a rough outline of electronic hardware involved.</li>
+            <li><b>SolidWorks parts and assemblies:</b> My designs and redesigns of the remote totaled 9 custom SolidWorks parts and 2 assemblies.</li>
+            <li><b>ASME-standard drawings:</b> Each design and redesign was drawn according to ASME standards.</li>
           </ul>
         </div>
 
@@ -550,26 +495,31 @@
       <div class="card-visual">
         <div class="carousel">
           <div class="carousel-slide active" style="background-image:url('images/oxygen-tubing-1.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-2.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-3.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-2.png');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-3.png');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-4.png');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-5.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-6.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 5: RE project -->
+  <!-- 5: RE project — 7 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:5;">
       <div class="card-copy">
-        <p class="card-index mono">5 of 7 — RE project</p>
-        <h2>Reverse engineering: a manual coffee grinder</h2>
+        <p class="card-index mono">5 of 7 — MCEN 5045: Design for Manufacturability</p>
+        <h2>Reverse Engineering Project: Manual Coffee Grinder</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Reverse-engineer a manual coffee grinder for a mechanical design course — understand why it's built the way it is, then propose a genuinely improved version.</p>
+          <p class="proj-text">Reverse-engineer a manual coffee grinder for a mechanical design course — understand why it's built the way it is, recreate it, then propose an improved version.</p>
         </div>
 
         <div class="proj-section">
@@ -578,6 +528,7 @@
             <li>Fully disassembled the grinder and mapped its product architecture</li>
             <li>Built black-box, glass-box, and fishbone diagrams; scored the design for DFA (part count, assembly complexity)</li>
             <li>Compared materials with Ashby charts (strength/density, wear/hardness, fracture toughness) across its plastic, ceramic, and metal components</li>
+            <li><b>SolidWorks parts, ASME drawings, and assemblies:</b> my assigned parts totaled 6 unique parts, which were drawn and combined with group members' parts to make the full assembly</li>
           </ul>
         </div>
 
@@ -601,41 +552,48 @@
           <div class="carousel-slide active" style="background-image:url('images/coffee-grinder-1.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-2.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-3.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-4.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-5.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-6.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-7.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 6: Temperature sensors (split from DarkSide-20K thesis) -->
+  <!-- 6: Temperature sensors — 6 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:6;">
       <div class="card-copy">
-        <p class="card-index mono">6 of 7 — Temperature sensors</p>
-        <h2>PMMA barrel temperature monitoring system</h2>
+        <p class="card-index mono">6 of 7 — Thesis Project: Giovanetti Lab, Williams College</p>
+        <h2>PMMA Barrel Temperature Monitoring System</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Build a temperature-monitoring subsystem for a full-scale mockup of the DarkSide-20K dark matter detector's cryogenic core (Williams College honors thesis), to protect its PMMA structure from thermal-shock cracking during cooldown.</p>
+          <p class="proj-text">Build a temperature-monitoring subsystem for a full-scale mockup of the DarkSide-20K dark matter detector's cryogenic core, to protect its PMMA structure from thermal-shock cracking during cooldown.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li>Instrumented 44 RTD sensors across panels and depths of the PMMA barrel</li>
-            <li>Designed a custom 3-wire resistance readout into ADCs for each sensor</li>
-            <li>Built a live Grafana dashboard for real-time thermal-gradient monitoring during cooling</li>
+            <li><b>FEM analysis:</b> Used FEM to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
+            <li><b>Bill of materials and wiring diagrams:</b> Established a BOM for wiring 44 RTDs out of the cryogenic chamber, through a flange, into analog-to-digital converters, then to a central platform.</li>
+            <li><b>Prototyping:</b> Performed mechanical stress testing on different RTD-capsule-epoxy configurations to determine the best fit for insertion.</li>
+            <li><b>FEM verification:</b> Performed liquid nitrogen tests using capsules in PMMA to verify FEM simulations and PMMA safety.</li>
+            <li><b>Instrumentation:</b> Instrumented 44 RTD sensors with 3-wire readout across different panels and depths of the PMMA barrel.</li>
+            <li><b>Software:</b> Implemented a 3-wire resistance readout into ADCs for each sensor.</li>
+            <li><b>Dashboard output:</b> Built a live Grafana dashboard for real-time thermal-gradient monitoring during cooling.</li>
           </ul>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Results</p>
-          <ul class="spec-list">
-            <li>Sensor readout held within 1&#176;C agreement across the full 44-sensor array during live cryostat cooldown — enough precision to inform a controlled cooling protocol</li>
-            <li>Part of the thesis work recognized with Sigma-Xi honors in physics</li>
-          </ul>
+          <p class="proj-text">Sensor readout held within 1&#176;C agreement across the sensor array during live cryostat cooldown — deemed enough precision to inform a controlled cooling protocol.</p>
         </div>
 
         <div class="tag-row">
@@ -649,20 +607,25 @@
           <div class="carousel-slide active" style="background-image:url('images/temp-sensors-1.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/temp-sensors-2.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/temp-sensors-3.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/temp-sensors-4.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/temp-sensors-5.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/temp-sensors-6.png');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <!-- 7: Level meter (split from DarkSide-20K thesis) -->
+  <!-- 7: Level meter — 5 photos -->
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:7;">
       <div class="card-copy">
-        <p class="card-index mono">7 of 7 — Level meter</p>
-        <h2>Short level meter system</h2>
+        <p class="card-index mono">7 of 7 — Thesis Project: INFN, Gran Sasso National Lab</p>
+        <h2>Short Level Meter System</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
@@ -672,18 +635,15 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li>Installed 4 capacitive sensors symmetrically around the TPC circumference</li>
-            <li>Built a custom capacitance-to-depth curve-fit model from calibration data</li>
-            <li>Designed and built a stainless-steel validation rig with an adjustable platform, using liquid nitrogen as a stand-in for liquid argon</li>
+            <li><b>Technical drawings:</b> Submitted technical drawings for manufacturing of a custom testing rig.</li>
+            <li><b>Instrument testing:</b> Built the stainless-steel validation rig with an adjustable platform, using liquid nitrogen as a stand-in for liquid argon.</li>
+            <li><b>Calibration:</b> Built a custom capacitance-to-depth curve-fit model from calibration data.</li>
           </ul>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Results</p>
-          <ul class="spec-list">
-            <li>Achieved sub-millimeter resolution, sensitive to as little as 0.01&#176; of tilt in the liquid-gas interface</li>
-            <li>Part of the thesis work recognized with Sigma-Xi honors in physics (Williams College)</li>
-          </ul>
+          <p class="proj-text">Achieved sub-millimeter resolution, sensitive to as little as 0.01&#176; of tilt in the liquid-gas interface.</p>
         </div>
 
         <div class="tag-row">
@@ -694,12 +654,16 @@
       </div>
       <div class="card-visual">
         <div class="carousel">
-          <div class="carousel-slide active" style="background-image:url('images/level-meter-1.jpg');"></div>
+          <div class="carousel-slide active" style="background-image:url('images/level-meter-1.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/level-meter-2.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/level-meter-3.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/level-meter-3.png');"></div>
+          <div class="carousel-slide" style="background-image:url('images/level-meter-4.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/level-meter-5.png');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
@@ -709,8 +673,8 @@
 
 <div class="section-label">
   <p class="eyebrow mono">ADDITIONAL COURSEWORK</p>
-  <h2>Robotics, controls &amp; biomechanics coursework</h2>
-  <p>Two more team projects, kept out of the main seven above but still hands-on.</p>
+  <h2>Robotics &amp; controls coursework</h2>
+  <p>One more project, coding heavy, with lots of shared GitHub repository work.</p>
 </div>
 
 <div class="stack">
@@ -719,7 +683,7 @@
     <article class="stack-card" style="--i:1;">
       <div class="card-copy">
         <p class="card-index mono">Coursework</p>
-        <h2>Robotics &amp; controls: four challenge problems</h2>
+        <h2>Robotics &amp; controls: Challenge Problems</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
@@ -759,155 +723,14 @@
           <div class="carousel-slide" style="background-image:url('images/robotics-coursework-3.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
+          <div class="carousel-dots">
+            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
+          </div>
         </div>
       </div>
     </article>
   </div>
 
-  <div class="stack-wrapper">
-    <article class="stack-card" style="--i:2;">
-      <div class="card-copy">
-        <p class="card-index mono">Coursework</p>
-        <h2>Knee rotation asymmetry in ACL injury risk</h2>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Reanalyze public motion-capture data to test whether leg dominance affects knee-rotation patterns during a landing task linked to non-contact ACL injury risk.</p>
-        </div>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Process &amp; Skills</p>
-          <ul class="spec-list">
-            <li>Reanalyzed 3D mocap + force-plate data from a 44-participant jump-landing study (Vicon system, 59 markers, pre/post fatigue)</li>
-            <li>Recomputed joint-angle time series via OpenSim inverse kinematics, isolating the single-leg medial-rotation hop</li>
-            <li>Grounded the comparison in the sports-medicine literature on leg-dominance asymmetry as an ACL risk factor</li>
-          </ul>
-        </div>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Results</p>
-          <ul class="spec-list">
-            <li>Statistically compared internal/external knee rotation between dominant and non-dominant legs during the landing window</li>
-          </ul>
-        </div>
-
-        <div class="tag-row">
-          <span class="tag">OpenSim / IK</span>
-          <span class="tag">Motion capture analysis</span>
-          <span class="tag">Biomechanics</span>
-          <span class="tag">Statistical comparison</span>
-        </div>
-      </div>
-      <div class="card-visual">
-        <div class="carousel">
-          <div class="carousel-slide active" style="background-image:url('images/knee-biomechanics-1.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/knee-biomechanics-2.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/knee-biomechanics-3.jpg');"></div>
-          <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
-          <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots"><span class="dot active"></span><span class="dot"></span><span class="dot"></span></div>
-        </div>
-      </div>
-    </article>
-  </div>
-
-</div>
-
-<div class="section-label">
-  <p class="eyebrow mono">RESEARCH &amp; WRITING</p>
-  <h2>Neuroscience coursework and proposal writing</h2>
-  <p>Not hardware builds, but the reading and reasoning behind the neuroprosthetics focus above — paper reviews, a mock grant proposal, and one wet-lab electrophysiology project.</p>
-</div>
-
-<div class="writing-wrap">
-  <div class="writing-card">
-
-    <div class="writing-row">
-      <div>
-        <h3>Mock R03 grant proposal</h3>
-        <p class="meta mono">NIH-style proposal &#183; gene therapy</p>
-      </div>
-      <p>Proposed a feasibility study applying rSIV.F/HN lentiviral gene therapy to human-derived cystic fibrosis airway cultures, targeting the ~15% of patients whose CFTR mutation doesn't respond to standard modulator therapy.</p>
-      <span class="tag">Grant writing</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>BCI finger &amp; quadcopter paper review</h3>
-        <p class="meta mono">Paper review &#183; Willsey et al. 2025</p>
-      </div>
-      <p>Reviewed a brain-computer interface that decoded individual finger movements from motor-cortex recordings in a paralyzed participant, well enough to pilot a quadcopter simulator with four degrees of freedom.</p>
-      <span class="tag">BCI</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>BCI paper review presentation</h3>
-        <p class="meta mono">Team presentation</p>
-      </div>
-      <p>Presented on motor-cortex brain-machine interfaces for reach and grasp decoding, covering electrode placement and signal processing across several foundational studies.</p>
-      <span class="tag">BCI</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>Mock neurotherapy proposal</h3>
-        <p class="meta mono">Proposal &#183; optogenetics</p>
-      </div>
-      <p>Designed a proposed optogenetic therapy targeting SOM+ interneurons in the amygdala to reduce excessive fear responses in anxiety disorders, while preserving appropriate responses to real threats.</p>
-      <span class="tag">Neuromodulation</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>The amygdala in fear processing</h3>
-        <p class="meta mono">Synthesis paper</p>
-      </div>
-      <p>Synthesized lesion-patient case studies and interoception experiments into a proposed model of how the amygdala integrates external and internal signals to regulate fear.</p>
-      <span class="tag">Neuroscience</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>Valence coding in emotion</h3>
-        <p class="meta mono">Analysis paper</p>
-      </div>
-      <p>Analyzed how amygdala microcircuits encode emotional valence, applying the model to predict altered emotional responses in an amygdala-lesion patient case study.</p>
-      <span class="tag">Neuroscience</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>Dorsal raphe nucleus in salient behaviors</h3>
-        <p class="meta mono">Presentation &#183; Paquelet et al. 2022</p>
-      </div>
-      <p>Presented on serotonergic dorsal raphe signaling during emotionally salient behavior and its broader role in reward, anxiety, and social interaction circuits.</p>
-      <span class="tag">Neuroscience</span>
-    </div>
-
-    <div class="writing-row">
-      <div>
-        <h3>Agropollutants, acetylcholinesterase &amp; the laryngeal synapse</h3>
-        <p class="meta mono">Wet-lab project &#183; electrophysiology</p>
-      </div>
-      <p>Ran electrophysiology trials on the Xenopus laevis laryngeal neuromuscular synapse to test how organophosphate pollutants — acetylcholinesterase inhibitors — affect firing and fatigue at the junction.</p>
-      <span class="tag">Electrophysiology</span>
-    </div>
-
-  </div>
-</div>
-
-<div class="close-wrap">
-  <article class="close-card">
-    <h2>Building toward neuroprosthetics, one instrumentation problem at a time</h2>
-    <p class="summary">The builds above came out of the same habit: take a physiological signal, close a control loop around it, and make the software trustworthy enough to run unattended. That's the kind of foundational device work I'm looking to do next — ideally somewhere it points toward neural interfaces and implantable devices over time.</p>
-    <div class="contact-row">
-      <a href="mailto:you@example.com">you@example.com — replace with your email</a>
-      <a href="#">linkedin.com/in/your-handle</a>
-      <a href="#">github.com/your-handle</a>
-    </div>
-  </article>
 </div>
 
 <script>
