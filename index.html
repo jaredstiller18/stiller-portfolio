@@ -95,7 +95,8 @@
     flex-direction: column;
     justify-content: center;
     padding: 6vh 6vw 8vh;
-    max-width: 900px;
+    max-width: 74rem;
+    margin: 0 auto;
   }
   .hero .kicker {
     font-family: "IBM Plex Mono", monospace;
@@ -140,7 +141,7 @@
 
   /* ---------- Section labels ---------- */
   .section-label {
-    max-width: 1180px;
+    max-width: 74rem;
     margin: 0 auto;
     padding: 8vh 6vw 2rem;
   }
@@ -152,7 +153,7 @@
   .stack {
     position: relative;
     padding: 0 6vw 12vh;
-    max-width: 1180px;
+    max-width: 74rem;
     margin: 0 auto;
   }
   .stack-wrapper {
@@ -301,6 +302,14 @@
     .card-copy { padding: 2.25rem 1.5rem; max-height: none; }
     .stack-card { top: calc(2.5vh + (var(--i) - 1) * 1.6rem); }
     .hero { padding: 8vh 6vw; }
+  }
+
+  @media (min-width: 1600px) {
+    html { font-size: 18px; }
+  }
+
+  @media (min-width: 2200px) {
+    html { font-size: 22px; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -731,6 +740,7 @@
           <ul class="spec-list">
             <li>CP1: benchmarked two collision-avoidance strategies over 100-run trials</li>
             <li>CP2: achieved a 90% goal-reach rate across 100 randomized trials</li>
+            <li>CP3: achieved code capable of segmenting jpg files with solid accuracy and reproduce using inverse kinematic on a virtual robotic arm. (see video)</li>
             <li>CP4: stabilized the inverted pendulum and produced a clean step response with the tuned PD controller</li>
           </ul>
         </div>
