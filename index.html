@@ -353,27 +353,22 @@
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Build a closed-loop rig that automatically holds a subject's blood oxygen saturation in a target band by switching between hypoxic and normoxic air — for altitude-training and physiology research use, not a commercial kit.</p>
+          <p class="proj-text">Building a closed-loop rig that uses a Hypoxico altitude training system to automatically hold a subject's blood oxygen saturation within a target band using hypoxic and normoxic air switching. Setup is for physiology research use, not a commercial kit.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Gas path:</b> Hypoxico HYP-123 PSA generator (hypoxic) plus a room-air blower (normoxic) as dual sources</li>
-            <li><b>Feedback:</b> Masimo Root pulse oximeter streamed over USB serial at 921,600 baud — SpO2 / BPM / PI / RR at 1 Hz</li>
-            <li><b>Actuation:</b> 4x 2-way solenoid valves driven by a SainSmart FT245R relay board in async bitbang mode via <span class="mono">ftd2xx</span></li>
-            <li><b>Fail-safe:</b> de-energized state defaults to normoxic air by design</li>
-            <li><b>Software:</b> Python/Dash dashboard — live vitals plotting, a 15-episode protocol, manual valve override, CSV logging</li>
-            <li>Iterated the controller from a reactive threshold design to a predictive-pulse strategy after characterizing system lag</li>
-          </ul>
-        </div>
-
-        <div class="proj-section">
-          <p class="proj-label mono">Results</p>
-          <ul class="spec-list">
-            <li>Across 18 tuning sessions, refined the controller to hold SpO2 tightly in the 79–83% band through the second half of each session</li>
-            <li>Measured real desaturation/resaturation dynamics (~0.38%/s vs. up to 5%/s) and used them to eliminate an early 10–14% recovery overshoot</li>
-            <li>Passive fail-safe held throughout testing — every relay or software fault defaulted the subject back to normal air</li>
+            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecture Documentation.</li>
+            <li><b>System architecture:</b> Designed a dual-stream gas delivery system that switches between a Hypoxico HYP-123 hypoxic generator and a variable-speed normoxic blower, with upstream reservoir bags, 22 mm CPAP tubing, and a Y-connector merging both streams to the subject's mask.</li>
+            <li><b>Valve control hardware:</b> Built a four-solenoid valve manifold (2-way, NPT) driven by a USB relay board (FTDI FT245R) in asynchronous bitbang mode, with a fail-safe default that routes normoxic air to the mask when all valves are de-energized.</li>
+            <li><b>Safety:</b> Wired a normally-closed emergency stop in series with the valve power line and added a software cutoff that forces normoxic air if SpO2 drops below 75%, holding it until SpO2 recovers to 82%.</li>
+            <li><b>Instrumentation interface:</b> Wrote a Python serial reader for a Masimo Root monitor (921600 baud, ASCII protocol) that parses SpO2, heart rate, perfusion index, and respiratory rate at 1 Hz in a background thread and computes real-time SpO2 trend by linear regression.</li>
+            <li><b>Control algorithm:</b> Developed a lag-compensated predictive controller that holds SpO2 at 80% by keeping the subject on hypoxic air and delivering brief, adaptive normoxic pulses at a 78% floor, with early-exit, trend-based abort, and hard-cap logic to prevent overshoot.</li>
+            <li><b>System identification:</b> Characterized desaturation rate (~0.38%/s), resaturation rate (~5%/s peak), and valve-to-SpO2 lag (~9 s mean) across 18 sessions, then used these measurements to tune pulse timing, trend windows, and minimum dwell times. This tightened control to 79–83%.</li>
+            <li><b>Dashboard and logging:</b> Built a Plotly Dash dashboard with live SpO2 charting, valve-switch markers, manual overrides, and a selector between controller variants, plus CSV logging that timestamps every valve state change and event.</li>
+            <li><b>Debugging and reliability:</b> Resolved a USB enumeration conflict between two FTDI devices with identical VID/PID by identifying the relay through serial-number exclusion. Also added relay auto-reconnect and 30-second health checks, and fixed a Dash callback batching bug with per-button callbacks.</li>
+            <li><b>Design iteration:</b> Developed an alternate bag-downstream architecture and a matching controller with longer pulses, lag constants, and dwell times to produce smoother FiO2 transitions.</li>
           </ul>
         </div>
 
@@ -414,10 +409,10 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Circuit design:</b> Designed the relay driver circuit and stimulator trigger circuit to control cuff inflation and e-stim via the Nordic's GPIOs.</li>
+            <li><b>Circuit design:</b> Designed a relay driver circuit and stimulator trigger circuit to control pneumatic cuff inflation and neuromuscular electrical stimulation via the Nordic's GPIOs.</li>
             <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecture Documentation.</li>
-            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing them into a working enclosure with USB Micro-C output to computer, BNC output to the e-stim, and a 1/4" audio jack to the cuff inflator.</li>
-            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT streaming from a Moxy NIRS monitor.</li>
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing the complete device into a working enclosure with Micro-USB output to computer, BNC output to the e-stim, and a 1/4" audio jack to the cuff inflator.</li>
+            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT streaming from a Moxy near-infrared spectroscopy (NIRS) monitor.</li>
             <li><b>Protocol engineering:</b> Implemented the specified research protocol for cuff inflation and precise 5V TTL triggering (~10 ms) for the DS7R stimulator.</li>
             <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS / Chart.js / Tailwind, with the entire protocol runnable from one button. Added contingency manual controls for the cuff inflator and e-stim, plus a manual save button on top of automatic hard-drive backups.</li>
           </ul>
@@ -623,7 +618,7 @@
             <li><b>Finite Element Analysis:</b> Used FEA to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
             <li><b>Bill of materials and wiring diagrams:</b> Established a BOM for wiring 44 RTDs out of the cryogenic chamber, through a flange, into analog-to-digital converters, then to a central platform.</li>
             <li><b>Prototyping:</b> Performed mechanical stress testing on different RTD-capsule-epoxy configurations to determine the best fit for insertion.</li>
-            <li><b>FEM verification:</b> Performed liquid nitrogen tests using capsules in PMMA to verify FEM simulations and PMMA safety.</li>
+            <li><b>FEA verification:</b> Performed liquid nitrogen tests using capsules in PMMA to verify FEA simulations and PMMA safety.</li>
             <li><b>Instrumentation:</b> Instrumented 44 RTD sensors with 3-wire readout across different panels and depths of the PMMA barrel.</li>
             <li><b>Software:</b> Implemented a 3-wire resistance readout into ADCs for each sensor.</li>
             <li><b>Dashboard output:</b> Built a live Grafana dashboard for real-time thermal-gradient monitoring during cooling.</li>
