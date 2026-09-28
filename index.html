@@ -72,6 +72,23 @@
   .mono { font-family: "IBM Plex Mono", ui-monospace, monospace; }
 
   /* ---------- Hero ---------- */
+  .profile-pics {
+  display: flex;
+  gap: 1rem;
+  margin: 0 0 2rem;
+}
+.profile-pics img {
+  width: 100%;
+  max-width: 260px;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  object-position: center top;
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  box-shadow: 5px 5px 0 var(--shadow);
+  background: var(--bg);
+}
+  
   .hero {
     min-height: 92vh;
     display: flex;
@@ -297,11 +314,14 @@
 
 <section class="hero">
   <div class="contact-row top">
-    <a href="mailto:you@example.com">you@example.com — replace with your email</a>
-    <a href="#">linkedin.com/in/your-handle — replace with your LinkedIn</a>
-    <a href="#">github.com/your-handle — replace with your GitHub</a>
+    <a href="mailto:you@example.com">jared.stiller@colorado.edu</a>
+    <a href="#">https://www.linkedin.com/in/jared-stiller-709263238/</a>
   </div>
   <h1>Jared Stiller - Engineering Portfolio</h1>
+  <div class="profile-pics">
+    <img src="images/profile-1.jpeg" alt="Jared Stiller">
+    <img src="images/profile-2.jpeg" alt="Jared Stiller">
+  </div>
   <p> Hello and welcome to my portfolio! I studied physics and biology as an undergraduate at Williams College. There I contributed subsystems to the DarkSide20K project and received Sigma-Xi honors in physics for my thesis work on the project. I am now graduating from CU-Boudler in Fall 2026 with my Master's in Biomedical Engineering. At Boulder I work in the physiology department's Tan Lab where I engineer the systems to conduct experimental procedures. I love the process of design and improvement, and hope to use my skills to create a meaningful impact on others. The projects below are some fun examples of my work in research labs and class. </p>
   <div class="scroll-hint">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
@@ -450,7 +470,7 @@
           <div class="carousel-slide" style="background-image:url('images/walker-braking-3.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/walker-braking-4.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/walker-braking-5.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/walker-braking-6.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/walker-braking-6.jpeg');"></div>
           <div class="carousel-slide" style="background-image:url('images/walker-braking-7.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
@@ -494,11 +514,11 @@
       </div>
       <div class="card-visual">
         <div class="carousel">
-          <div class="carousel-slide active" style="background-image:url('images/oxygen-tubing-1.jpg');"></div>
+          <div class="carousel-slide active" style="background-image:url('images/oxygen-tubing-1.JPG');"></div>
           <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-2.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-3.png');"></div>
           <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-4.png');"></div>
-          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-5.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-5.JPG');"></div>
           <div class="carousel-slide" style="background-image:url('images/oxygen-tubing-6.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
           <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
@@ -552,8 +572,8 @@
           <div class="carousel-slide active" style="background-image:url('images/coffee-grinder-1.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-2.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-3.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-4.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-5.jpg');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-4.JPG');"></div>
+          <div class="carousel-slide" style="background-image:url('images/coffee-grinder-5.JPG');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-6.jpg');"></div>
           <div class="carousel-slide" style="background-image:url('images/coffee-grinder-7.jpg');"></div>
           <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
@@ -581,7 +601,7 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>FEM analysis:</b> Used FEM to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
+            <li><b>Finite Element Analysis:</b> Used FEA to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
             <li><b>Bill of materials and wiring diagrams:</b> Established a BOM for wiring 44 RTDs out of the cryogenic chamber, through a flange, into analog-to-digital converters, then to a central platform.</li>
             <li><b>Prototyping:</b> Performed mechanical stress testing on different RTD-capsule-epoxy configurations to determine the best fit for insertion.</li>
             <li><b>FEM verification:</b> Performed liquid nitrogen tests using capsules in PMMA to verify FEM simulations and PMMA safety.</li>
@@ -717,15 +737,10 @@
         </div>
       </div>
       <div class="card-visual">
-        <div class="carousel">
-          <div class="carousel-slide active" style="background-image:url('images/robotics-coursework-1.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/robotics-coursework-2.jpg');"></div>
-          <div class="carousel-slide" style="background-image:url('images/robotics-coursework-3.jpg');"></div>
-          <button class="carousel-arrow prev" aria-label="Previous photo">&#8249;</button>
-          <button class="carousel-arrow next" aria-label="Next photo">&#8250;</button>
-          <div class="carousel-dots">
-            <span class="dot active"></span><span class="dot"></span><span class="dot"></span>
-          </div>
+        <div class="carousel-slide" style="background-image:none;">
+          <video src="images/spo2-demo.mp4"
+            loop preload="none" autoplay muted loop playsinline
+            style="width:100%;height:100%;object-fit:contain;"></video>
         </div>
       </div>
     </article>
