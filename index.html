@@ -30,8 +30,8 @@
     --border: #d3d9de;
     --shadow: rgba(27,36,48,0.14);
   }
-  :root:not([data-theme="light"]) {
-    @media (prefers-color-scheme: dark) {
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
       --bg: #14181d;
       --bg-grid: rgba(255,255,255,0.05);
       --card: #1b2128;
@@ -94,9 +94,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    padding: 6vh 6vw 8vh;
-    max-width: 74rem;
-    margin: 0 auto;
+    padding: 6vh 0 8vh;
   }
   .hero .kicker {
     font-family: "IBM Plex Mono", monospace;
@@ -141,9 +139,7 @@
 
   /* ---------- Section labels ---------- */
   .section-label {
-    max-width: 74rem;
-    margin: 0 auto;
-    padding: 8vh 6vw 2rem;
+    padding: 8vh 0 2rem;
   }
   .section-label .eyebrow { font-family: "IBM Plex Mono", monospace; font-size: 0.8rem; color: var(--accent); margin: 0 0 0.5rem; }
   .section-label h2 { font-size: clamp(1.5rem, 3vw, 2rem); font-weight: 600; margin: 0 0 0.6rem; max-width: 34ch; }
@@ -152,9 +148,7 @@
   /* ---------- Stack ---------- */
   .stack {
     position: relative;
-    padding: 0 6vw 12vh;
-    max-width: 74rem;
-    margin: 0 auto;
+    padding: 0 0 12vh;
   }
   .stack-wrapper {
     min-height: 96vh;
@@ -255,7 +249,6 @@
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
-    border: 1px dashed var(--border);
     opacity: 0;
     transition: opacity .4s ease;
   }
@@ -296,20 +289,36 @@
   .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--border); }
   .dot.active { background: var(--accent); }
 
+  /* ---------- Layout: scales from half-screen to ultrawide ---------- */
+  :root { --gutter: clamp(1rem, 5vw, 5rem); --maxw: 96rem; }
+
+  .hero,
+  .stack,
+  .section-label {
+    width: min(var(--maxw), 100% - 2 * var(--gutter));
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .hero h1 { max-width: 24ch; }
+  .hero p { max-width: 70ch; }
+
+  @media (min-width: 821px) {
+    .stack-card { grid-template-columns: minmax(0, 1.25fr) minmax(0, 1fr); }
+    .card-copy { padding: clamp(1.75rem, 3vw, 3.5rem); }
+  }
+
+  .card-copy h2 { font-size: clamp(1.3rem, 1.8vw, 2rem); }
+  .proj-text { font-size: clamp(0.94rem, 0.45vw + 0.62rem, 1.1rem); max-width: 65ch; }
+  .spec-list li { font-size: clamp(0.86rem, 0.45vw + 0.55rem, 1.05rem); }
+  .proj-label { font-size: clamp(0.74rem, 0.3vw + 0.5rem, 0.92rem); }
+  .tag { font-size: clamp(0.72rem, 0.25vw + 0.55rem, 0.85rem); }
+
   @media (max-width: 820px) {
     .stack-card { grid-template-columns: 1fr; }
     .card-visual { border-left: none; border-top: 1px solid var(--border); order: -1; aspect-ratio: 4 / 3; min-height: 280px; }
     .card-copy { padding: 2.25rem 1.5rem; max-height: none; }
     .stack-card { top: calc(2.5vh + (var(--i) - 1) * 1.6rem); }
-    .hero { padding: 8vh 6vw; }
-  }
-
-  @media (min-width: 1600px) {
-    html { font-size: 18px; }
-  }
-
-  @media (min-width: 2200px) {
-    html { font-size: 22px; }
+    .hero { padding: 8vh 0; }
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -740,7 +749,7 @@
           <ul class="spec-list">
             <li>CP1: benchmarked two collision-avoidance strategies over 100-run trials</li>
             <li>CP2: achieved a 90% goal-reach rate across 100 randomized trials</li>
-            <li>CP3: achieved code capable of segmenting jpg files with solid accuracy and reproduce using inverse kinematic on a virtual robotic arm. (see video)</li>
+            <li>CP3: wrote code that segments JPG images with solid accuracy and redraws them on a virtual robotic arm using inverse kinematics (see video)</li>
             <li>CP4: stabilized the inverted pendulum and produced a clean step response with the tuned PD controller</li>
           </ul>
         </div>
@@ -754,7 +763,7 @@
       </div>
       <div class="card-visual">
         <div class="carousel-slide active" style="background-image:none;">
-          <video src="images/spo2-demo.mp4" autoplay muted loop playsinline preload="metadata"
+          <video src="images/spo2-demo.mp4" aria-label="Robotics demo video" autoplay muted loop playsinline preload="metadata"
                  style="width:100%;height:100%;object-fit:contain;"></video>
         </div>
       </div>
