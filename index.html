@@ -330,12 +330,12 @@
     <a href="mailto:jared.stiller@colorado.edu">jared.stiller@colorado.edu</a>
     <a href="https://www.linkedin.com/in/jared-stiller-709263238/">linkedin.com/in/jared-stiller-709263238</a>
   </div>
-  <h1>Jared Stiller - Engineering Portfolio</h1>
+  <h1>Jared Stiller — Engineering Portfolio</h1>
   <div class="profile-pics">
     <img src="images/profile-1.jpeg" alt="Jared Stiller">
     <img src="images/profile-2.jpeg" alt="Jared Stiller">
   </div>
-  <p> Hello and welcome to my portfolio! I studied physics and biology as an undergraduate at Williams College. There I contributed subsystems to the DarkSide-20K project and received Sigma-Xi honors in physics for my thesis work on the project. I am now graduating from CU-Boulder in Fall 2026 with my Master's in Biomedical Engineering. At Boulder, I work in the physiology department's Tan Lab where I engineer the systems to conduct experimental procedures. I love the process of design and improvement, and hope to use my skills to create a meaningful impact on others. The projects below are some fun examples of my work in research labs and class. </p>
+  <p>Hello, and welcome to my portfolio! I studied physics and biology as an undergraduate at Williams College. There, I contributed subsystems to the DarkSide-20K project and received Sigma Xi honors in physics for my thesis work on the project. I am now graduating from CU Boulder in Fall 2026 with a Master's in Biomedical Engineering. At Boulder, I work in the physiology department's Tan Lab, where I engineer the systems used to conduct experimental procedures. I love the process of design and improvement and hope to use my skills to make a meaningful impact on others. The projects below are some fun examples of my work in research labs and classes.</p>
   <div class="scroll-hint">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 4v16M6 14l6 6 6-6"/></svg>
     Scroll to review seven builds below
@@ -348,24 +348,24 @@
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:1;">
       <div class="card-copy">
-        <p class="card-index mono">1 of 7 — Tan Lab, CU-Boulder</p>
+        <p class="card-index mono">1 of 7 — Tan Lab, CU Boulder</p>
         <h2>Closed-loop Hypoxic Air Delivery and Control System</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Building a closed-loop rig that uses a Hypoxico altitude training system to automatically hold a subject's blood oxygen saturation within a target band using hypoxic and normoxic air switching. Setup is for physiology research use, not a commercial kit.</p>
+          <p class="proj-text">Build a closed-loop rig that uses a Hypoxico altitude training system to automatically hold a subject's blood oxygen saturation within a target band by switching between hypoxic and normoxic air. The setup is built for physiology research, not as a commercial kit.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecture Documentation.</li>
+            <li><b>Administrative:</b> Formatted a BOM for approval, ordered parts, and filed the appropriate paperwork (tax refunds). Later produced a standard operating procedure (SOP) and system architecture documentation.</li>
             <li><b>System architecture:</b> Designed a dual-stream gas delivery system that switches between a Hypoxico HYP-123 hypoxic generator and a variable-speed normoxic blower, with upstream reservoir bags, 22 mm CPAP tubing, and a Y-connector merging both streams to the subject's mask.</li>
             <li><b>Valve control hardware:</b> Built a four-solenoid valve manifold (2-way, NPT) driven by a USB relay board (FTDI FT245R) in asynchronous bitbang mode, with a fail-safe default that routes normoxic air to the mask when all valves are de-energized.</li>
-            <li><b>Safety:</b> Wired a normally-closed emergency stop in series with the valve power line and added a software cutoff that forces normoxic air if SpO2 drops below 75%, holding it until SpO2 recovers to 82%.</li>
-            <li><b>Instrumentation interface:</b> Wrote a Python serial reader for a Masimo Root monitor (921600 baud, ASCII protocol) that parses SpO2, heart rate, perfusion index, and respiratory rate at 1 Hz in a background thread and computes real-time SpO2 trend by linear regression.</li>
+            <li><b>Safety:</b> Wired a normally closed emergency stop in series with the valve power line and added a software cutoff that forces normoxic air if SpO2 drops below 75%, holding it until SpO2 recovers to 82%.</li>
+            <li><b>Instrumentation interface:</b> Wrote a Python serial reader for a Masimo Root monitor (921600 baud, ASCII protocol) that parses SpO2, heart rate, perfusion index, and respiratory rate at 1 Hz in a background thread and computes the real-time SpO2 trend by linear regression.</li>
             <li><b>Control algorithm:</b> Developed a lag-compensated predictive controller that holds SpO2 at 80% by keeping the subject on hypoxic air and delivering brief, adaptive normoxic pulses at a 78% floor, with early-exit, trend-based abort, and hard-cap logic to prevent overshoot.</li>
-            <li><b>System identification:</b> Characterized desaturation rate (~0.38%/s), resaturation rate (~5%/s peak), and valve-to-SpO2 lag (~9 s mean) across 18 sessions, then used these measurements to tune pulse timing, trend windows, and minimum dwell times. This tightened control to 79–83%.</li>
+            <li><b>System identification:</b> Characterized desaturation rate (~0.38%/s), resaturation rate (~5%/s peak), and valve-to-SpO2 lag (~9 s mean) across 18 sessions, then used these measurements to tune pulse timing, trend windows, and minimum dwell times, tightening control to 79–83%.</li>
             <li><b>Dashboard and logging:</b> Built a Plotly Dash dashboard with live SpO2 charting, valve-switch markers, manual overrides, and a selector between controller variants, plus CSV logging that timestamps every valve state change and event.</li>
             <li><b>Debugging and reliability:</b> Resolved a USB enumeration conflict between two FTDI devices with identical VID/PID by identifying the relay through serial-number exclusion. Also added relay auto-reconnect and 30-second health checks, and fixed a Dash callback batching bug with per-button callbacks.</li>
             <li><b>Design iteration:</b> Developed an alternate bag-downstream architecture and a matching controller with longer pulses, lag constants, and dwell times to produce smoother FiO2 transitions.</li>
@@ -398,23 +398,23 @@
   <div class="stack-wrapper">
     <article class="stack-card" style="--i:2;">
       <div class="card-copy">
-        <p class="card-index mono">2 of 7 — Tan Lab, CU-Boulder</p>
+        <p class="card-index mono">2 of 7 — Tan Lab, CU Boulder</p>
         <h2>nRF52 BLE Research Instrumentation Platform</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Unified three separate pieces of physiology research hardware: a NIRS monitor, a pneumatic cuff inflator, and an electrical stimulator, under one BLE bridge and web dashboard. Allowed the lab to run a single sequenced protocol with shared timestamps, instead of juggling three standalone instruments.</p>
+          <p class="proj-text">Unify three separate pieces of physiology research hardware (a NIRS monitor, a pneumatic cuff inflator, and an electrical stimulator) under one BLE bridge and web dashboard, allowing the lab to run a single sequenced protocol with shared timestamps instead of juggling three standalone instruments.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Circuit design:</b> Designed a relay driver circuit and stimulator trigger circuit to control pneumatic cuff inflation and neuromuscular electrical stimulation via the Nordic's GPIOs.</li>
-            <li><b>Administrative:</b> Formatted a BOM that was approved, ordered parts, and filed appropriate paperwork (tax refunds). Later produced a Standard Operating Procedure (SOP) and System and Architecture Documentation.</li>
-            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, placing the complete device into a working enclosure with Micro-USB output to computer, BNC output to the e-stim, and a 1/4" audio jack to the cuff inflator.</li>
-            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK, for BT streaming from a Moxy near-infrared spectroscopy (NIRS) monitor.</li>
-            <li><b>Protocol engineering:</b> Implemented the specified research protocol for cuff inflation and precise 5V TTL triggering (~10 ms) for the DS7R stimulator.</li>
-            <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS / Chart.js / Tailwind, with the entire protocol runnable from one button. Added contingency manual controls for the cuff inflator and e-stim, plus a manual save button on top of automatic hard-drive backups.</li>
+            <li><b>Circuit design:</b> Designed a relay driver circuit and a stimulator trigger circuit to control pneumatic cuff inflation and neuromuscular electrical stimulation via the nRF52's GPIOs.</li>
+            <li><b>Administrative:</b> Formatted a BOM for approval, ordered parts, and filed the appropriate paperwork (tax refunds). Later produced a standard operating procedure (SOP) and system architecture documentation.</li>
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuits above, then housed the complete device in an enclosure with a Micro-USB output to the computer, a BNC output to the e-stim, and a 1/4" audio jack to the cuff inflator.</li>
+            <li><b>Embedded firmware:</b> Wrote the BLE bridge in Zephyr RTOS (C89, NCS v2.0.0) using the Nordic nRF52-DK to stream data over BLE from a Moxy near-infrared spectroscopy (NIRS) monitor.</li>
+            <li><b>Protocol engineering:</b> Implemented the specified research protocol for cuff inflation and precise 5 V TTL triggering (~10 ms) for the DS7R stimulator.</li>
+            <li><b>Full-stack dashboard:</b> Built the live monitoring and protocol-runner interface in vanilla JS, Chart.js, and Tailwind, with the entire protocol runnable from one button. Added contingency manual controls for the cuff inflator and e-stim, plus a manual save button on top of automatic hard-drive backups.</li>
           </ul>
         </div>
 
@@ -452,7 +452,7 @@
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">To reduce the cognitive and physical load on walker users by implementing an automated sensing and braking system.</p>
+          <p class="proj-text">Reduce the cognitive and physical load on walker users by implementing an automated sensing and braking system.</p>
         </div>
 
         <div class="proj-section">
@@ -462,8 +462,8 @@
             <li><b>Ideation:</b> Engaged in a comprehensive brainstorming approach using concept maps, customer journey maps, and affinity diagrams.</li>
             <li><b>Administrative and website design:</b> Submitted a BOM to be ordered. Documented the design process (need-finding, ideation, prototyping, reflection, and marketing) on a website platform.</li>
             <li><b>Circuit and hardware design:</b> Designed a capacitive brake-trigger circuit using copper tape formed to the walker handles as capacitive sensors. The touch signal was processed through an Arduino Nano, generating a motor response in the braking system. Electronics, drivers, and actuators ran off a portable power source connected to the walker.</li>
-            <li><b>Hardware construction:</b> Hand-built and soldered the circuit above. Implemented linear actuators into the walker's braking system and a capacitive sensing system in the handles — all fixed to the walker while retaining its foldability and portability.</li>
-            <li><b>Software design:</b> Wrote and refined code in C/C++ for a touch-threshold brake response, triggering the parking brake when the user loses stable contact with the walker, using an array of handle sensors alongside iterative field tests under observation.</li>
+            <li><b>Hardware construction:</b> Hand-built and soldered the circuit above. Integrated linear actuators into the walker's braking system and a capacitive sensing system in the handles — all fixed to the walker while retaining its foldability and portability.</li>
+            <li><b>Software design:</b> Wrote C/C++ code for a touch-threshold brake response that engages the parking brake when the user loses stable contact with the handle sensor array, refining it through iterative, observed field tests.</li>
           </ul>
         </div>
 
@@ -502,7 +502,7 @@
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">To design a novel mechatronic system that provides safe, omnidirectional management of oxygen tubing. Product analysis was shared within the group, I was responsible for the remote in Solidworks.</p>
+          <p class="proj-text">Design a novel mechatronic system that provides safe, omnidirectional management of oxygen tubing. Product analysis was shared across the group; I was responsible for designing the remote in SolidWorks.</p>
         </div>
 
         <div class="proj-section">
@@ -514,7 +514,7 @@
             <li><b>Manufacturing analysis:</b> Determined manufacturing methods alongside the material analysis, aiming to reduce cost for our intended production line.</li>
             <li><b>Cost analysis:</b> Determined the cost of manufacturing the product based on material and manufacturing method.</li>
             <li><b>Bill of materials:</b> Produced a BOM for custom parts, including a rough outline of electronic hardware involved.</li>
-            <li><b>SolidWorks parts and assemblies:</b> Designs and redesigns of the remote for the device totaled 9 custom SolidWorks parts and 2 assemblies.</li>
+            <li><b>SolidWorks parts and assemblies:</b> Designs and redesigns of the remote totaled 9 custom SolidWorks parts and 2 assemblies.</li>
             <li><b>ASME-standard drawings:</b> Each design and redesign was drawn according to ASME standards.</li>
           </ul>
         </div>
@@ -553,24 +553,24 @@
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
-          <p class="proj-text">Reverse-engineer a manual coffee grinder for a mechanical design course — understand why it's built the way it is, recreate from scratch in Solidworks, then propose an improvements.</p>
+          <p class="proj-text">Reverse-engineer a manual coffee grinder for a mechanical design course — understand why it's built the way it is, recreate it from scratch in SolidWorks, and propose improvements.</p>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Disassembly and functional analysis:</b> Fully disassembled the grinder, mapped its product architecture, and built black-box, glass-box, and fishbone diagrams</li>
-            <li><b>Design analysis:</b> Scored the design for DFA (part count, assembly complexity) to identify redesign opportunities</li>
-            <li><b>Material analysis:</b> Compared materials with Ashby charts (strength/density, wear/hardness, fracture toughness) across the grinder's plastic, ceramic, and metal components</li>
-            <li><b>SolidWorks parts, ASME drawings, and assemblies:</b> My assigned parts totaled 6 unique parts, which were drawn and combined with group members' parts into the full assembly</li>
+            <li><b>Disassembly and functional analysis:</b> Fully disassembled the grinder, mapped its product architecture, and built black-box, glass-box, and fishbone diagrams.</li>
+            <li><b>Design analysis:</b> Scored the design for DFA (part count, assembly complexity) to identify redesign opportunities.</li>
+            <li><b>Material analysis:</b> Compared materials with Ashby charts (strength/density, wear/hardness, fracture toughness) across the grinder's plastic, ceramic, and metal components.</li>
+            <li><b>SolidWorks parts, ASME drawings, and assemblies:</b> I was assigned 6 unique parts, which I modeled, drew, and combined with group members' parts into the full assembly.</li>
           </ul>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Results</p>
           <ul class="spec-list">
-            <li>Proposed and modeled a consolidated the cup-holder assembly and snap-fitting the plastic ring to cut part count and manufacturing cost.</li>
-            <li>Substituted Aluminum 6061 for a stainless component, backed by a revised cost and DFA analysis.</li>
+            <li>Proposed and modeled a consolidated cup-holder assembly and a snap-fit plastic ring to cut part count and manufacturing cost.</li>
+            <li>Substituted 6061 aluminum for a stainless-steel component, backed by a revised cost and DFA analysis.</li>
           </ul>
         </div>
 
@@ -615,7 +615,7 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Finite Element Analysis:</b> Used FEA to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
+            <li><b>Finite element analysis:</b> Used FEA to determine capsule sizing for slip-fit interference, using material properties to secure the sensor when cooled.</li>
             <li><b>Bill of materials and wiring diagrams:</b> Established a BOM for wiring 44 RTDs out of the cryogenic chamber, through a flange, into analog-to-digital converters, then to a central platform.</li>
             <li><b>Prototyping:</b> Performed mechanical stress testing on different RTD-capsule-epoxy configurations to determine the best fit for insertion.</li>
             <li><b>FEA verification:</b> Performed liquid nitrogen tests using capsules in PMMA to verify FEA simulations and PMMA safety.</li>
@@ -627,11 +627,11 @@
 
         <div class="proj-section">
           <p class="proj-label mono">Results</p>
-          <p class="proj-text">Sensor readout held within 1&#176;C agreement across the sensor array during live cryostat cooldown — deemed enough precision to inform a controlled cooling protocol.</p>
+          <p class="proj-text">Sensor readout held within 1&nbsp;&#176;C agreement across the sensor array during live cryostat cooldown — sufficient precision to inform a controlled cooling protocol.</p>
         </div>
 
         <div class="tag-row">
-          <span class="tag">RTD/ADC design</span>
+          <span class="tag">RTD / ADC design</span>
           <span class="tag">Cryogenic instrumentation</span>
           <span class="tag">Thermal monitoring</span>
         </div>
@@ -669,7 +669,7 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>Technical drawings:</b> Submitted technical drawings for manufacturing of a custom testing rig.</li>
+            <li><b>Technical drawings:</b> Submitted technical drawings for the manufacture of a custom test rig.</li>
             <li><b>Instrument testing:</b> Built the stainless-steel validation rig with an adjustable platform, using liquid nitrogen as a stand-in for liquid argon.</li>
             <li><b>Calibration:</b> Built a custom capacitance-to-depth curve-fit model from calibration data.</li>
           </ul>
@@ -707,8 +707,8 @@
 
 <div class="section-label">
   <p class="eyebrow mono">ADDITIONAL COURSEWORK</p>
-  <h2>Robotics &amp; controls coursework</h2>
-  <p>One more project, coding heavy, with lots of shared GitHub repository work.</p>
+  <h2>Robotics &amp; Controls Coursework</h2>
+  <p>One more project: coding-heavy, with extensive collaborative work in a shared GitHub repository.</p>
 </div>
 
 <div class="stack">
@@ -717,7 +717,7 @@
     <article class="stack-card" style="--i:1;">
       <div class="card-copy">
         <p class="card-index mono">Coursework</p>
-        <h2>Robotics &amp; controls: Challenge Problems</h2>
+        <h2>Robotics &amp; Controls: Challenge Problems</h2>
 
         <div class="proj-section">
           <p class="proj-label mono">Project Objective</p>
@@ -727,20 +727,20 @@
         <div class="proj-section">
           <p class="proj-label mono">Process &amp; Skills</p>
           <ul class="spec-list">
-            <li><b>CP1 — Multi-robot pathfinding:</b> conflict-resolution algorithms routing robots across a shared grid without collisions</li>
-            <li><b>CP2 — RRT motion planning:</b> a non-holonomic Rapidly-Exploring Random Tree planner for a TurtleBot in PyBullet</li>
-            <li><b>CP3 — Inverse kinematics:</b> drove a 7-DOF Franka Emika Panda arm to render images and lettering on a virtual blackboard</li>
-            <li><b>CP4 — Inverted-pendulum control:</b> derived the cart-pendulum equations of motion via Lagrangian mechanics, then designed and tuned a PD controller</li>
+            <li><b>CP1 — Multi-robot pathfinding:</b> Implemented conflict-resolution algorithms that route robots across a shared grid without collisions.</li>
+            <li><b>CP2 — RRT motion planning:</b> Built a non-holonomic Rapidly-exploring Random Tree (RRT) planner for a TurtleBot in PyBullet.</li>
+            <li><b>CP3 — Inverse kinematics:</b> Drove a 7-DOF Franka Emika Panda arm to render images and lettering on a virtual blackboard.</li>
+            <li><b>CP4 — Inverted-pendulum control:</b> Derived the cart-pendulum equations of motion via Lagrangian mechanics, then designed and tuned a PD controller.</li>
           </ul>
         </div>
 
         <div class="proj-section">
           <p class="proj-label mono">Results</p>
           <ul class="spec-list">
-            <li>CP1: benchmarked two collision-avoidance strategies over 100-run trials</li>
-            <li>CP2: achieved a 90% goal-reach rate across 100 randomized trials</li>
-            <li>CP3: wrote code that segments JPG images with solid accuracy and redraws them on a virtual robotic arm using inverse kinematics (see video)</li>
-            <li>CP4: stabilized the inverted pendulum and produced a clean step response with the tuned PD controller</li>
+            <li>CP1: Benchmarked two collision-avoidance strategies over 100-run trials.</li>
+            <li>CP2: Achieved a 90% goal-reach rate across 100 randomized trials.</li>
+            <li>CP3: Wrote code that accurately segments JPG images and redraws them with a virtual robotic arm using inverse kinematics (see video).</li>
+            <li>CP4: Stabilized the inverted pendulum and produced a clean step response with the tuned PD controller.</li>
           </ul>
         </div>
 
